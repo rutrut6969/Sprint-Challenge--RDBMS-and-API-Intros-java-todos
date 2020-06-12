@@ -27,7 +27,7 @@ public class User extends Auditable{
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
             @JsonIgnoreProperties(value = "user")
-    List<Todo> todos = new ArrayList<>();
+    List<UserTodos> todos = new ArrayList<UserTodos>();
 
     public User() {
     }
@@ -47,7 +47,11 @@ public class User extends Auditable{
     }
 
     public String getUsername() {
-        return username;
+        if(username == null){
+            return null;
+        }else {
+            return username.toLowerCase();
+        }
     }
 
     public void setUsername(String username) {
@@ -70,11 +74,15 @@ public class User extends Auditable{
         this.password = password;
     }
 
-    public List<Todo> getTodos() {
+    public List<UserTodos> getTodos() {
         return todos;
     }
 
-    public void setTodos(List<Todo> todos) {
+    public void setTodos(List<UserTodos> todos) {
         this.todos = todos;
     }
+    public void addTodo(Todo todo){
+        todos.add(new UserTodos(this, todo));
+    }
+
 }

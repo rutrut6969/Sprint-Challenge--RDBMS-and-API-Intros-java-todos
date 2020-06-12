@@ -13,10 +13,6 @@ public interface TodoService {
     // Find Todo by ID
     Todo findTodoById(long id);
 
-    // Delete Todo Based on ID
-    void delete(long id);
-
-
     // Add a user
-    Todo addTodo(Todo todo);
+    Todo save(Todo todo);
 }

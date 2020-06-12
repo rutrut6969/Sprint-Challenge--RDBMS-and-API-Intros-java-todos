@@ -28,7 +28,12 @@ public class Todo extends Auditable {
 
     public Todo(String description, boolean completed, User user) {
         this.description = description;
-        this.completed = completed;
+        if(!completed){
+            this.completed = false;
+        }else{
+            this.completed = completed;
+        }
+
         this.user = user;
     }
 
@@ -51,6 +56,7 @@ public class Todo extends Auditable {
     public boolean isCompleted() {
         return completed;
     }
+
 
     public void setCompleted(boolean completed) {
         this.completed = completed;
