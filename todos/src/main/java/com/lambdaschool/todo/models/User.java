@@ -32,7 +32,7 @@ public class User extends Auditable{
     public User() {
     }
 
-    public User(String username, String primaryemail, String password, List<Todo> todos) {
+    public User(String username, String password, String primaryemail) {
         this.username = username;
         this.primaryemail = primaryemail;
         this.password = password;
