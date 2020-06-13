@@ -26,6 +26,7 @@ public class UserController {
     UserRepo userRepo;
 
     // Return all Users
+//    Works
     @GetMapping(value = "/users", produces = {"application/json"})
     public ResponseEntity<?> listAllUsers(){
         List<User> myUsers = userService.findAll();
@@ -33,6 +34,7 @@ public class UserController {
     }
 
     // Get Users by ID:
+    // works
     @GetMapping(value = "/user/{id}", produces = {"application/json"})
     public ResponseEntity<?> findUserById(@PathVariable long id){
         User foundUser = userService.findUserById(id);
@@ -40,6 +42,7 @@ public class UserController {
     }
 
     // Creating A User:
+    // works
     @PostMapping(value = "/user", consumes = {"application/json"})
     public ResponseEntity<?> addUser(@Validated @RequestBody User newuser){
         newuser.setUserid(0);
@@ -55,6 +58,7 @@ public class UserController {
         return new ResponseEntity<>(null, responseHeaders, HttpStatus.CREATED);
     }
 
+    // Not working returns 405 Not Allowed
     @DeleteMapping(value = "/userid/{userid}")
     public ResponseEntity<?> deleteUser(@PathVariable long userid){
         userService.delete(userid);

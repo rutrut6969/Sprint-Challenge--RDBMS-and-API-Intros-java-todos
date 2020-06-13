@@ -14,5 +14,7 @@ public interface TodoService {
     Todo findTodoById(long id);
 
     // Add a user
-    Todo save(Todo todo);
+    Todo save(long userid, Todo todo);
+
+    void complete(Todo todo);
 }

@@ -10,8 +10,6 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 public interface UserRepo extends CrudRepository<User, Long> {
-    // Finding user by username
-    User findByUsername(String uname);
 
     @Transactional
     @Modifying

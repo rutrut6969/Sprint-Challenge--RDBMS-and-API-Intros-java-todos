@@ -26,14 +26,9 @@ public class Todo extends Auditable {
     public Todo() {
     }
 
-    public Todo(String description, boolean completed, User user) {
+    public Todo(User user, String description) {
         this.description = description;
-        if(!completed){
-            this.completed = false;
-        }else{
-            this.completed = completed;
-        }
-
+        this.completed = false;
         this.user = user;
     }
 

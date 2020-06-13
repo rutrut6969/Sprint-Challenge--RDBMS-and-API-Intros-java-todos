@@ -58,31 +58,21 @@ public class UserServiceImpl implements UserService {
     @Override
     public User save(User user) {
         User newUser = new User();
-
-        if (user.getUserid() != 0) {
-            User oldUser = userrepos.findById(user.getUserid()).orElseThrow(() -> new EntityNotFoundException("User with the ID: " + user.getUserid() + " was not found"));
-
-            for (UserTodos ut : oldUser.getTodos()) {
-                deleteUserTodo(ut.getUser().getUserid(), ut.getTodo().getTodoid());
-            }
-            newUser.setUserid(user.getUserid());
-        }
         newUser.setUsername(user.getUsername()
                 .toLowerCase());
         newUser.setPassword(user.getPassword());
         newUser.setPrimaryemail(user.getPrimaryemail());
-        newUser.getTodos().clear();
-
-        if (user.getUserid() == 0) {
-            for (UserTodos t : user.getTodos()) {
-                Todo newTodo = todoService.findTodoById(t.getTodo().getTodoid());
-                newUser.addTodo(newTodo);
-            }
-        } else {
-            for (UserTodos t : user.getTodos()) {
-                addUserTodo(t.getUser().getUserid(), t.getTodo().getTodoid());
-            }
+        newUser.getTodos()
+                .clear();
+        for (Todo t : user.getTodos())
+        {
+            newUser.getTodos()
+                    .add(new Todo(newUser,
+                            t.getDescription()));
         }
+
+
+
 
         return userrepos.save(newUser);
     }
